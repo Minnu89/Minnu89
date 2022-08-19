@@ -1,0 +1,30 @@
+{
+	"name": "AzureSqlDatabase6",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"Servername": {
+				"type": "string"
+			},
+			"DBName": {
+				"type": "string"
+			},
+			"DBUserName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@{linkedService().Servername};Initial Catalog=@{linkedService().DBName};User ID=@{linkedService().DBUserName}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "minkeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "minnusql"
+			}
+		}
+	}
+}

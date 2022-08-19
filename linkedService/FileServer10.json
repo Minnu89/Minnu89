@@ -1,0 +1,32 @@
+{
+	"name": "FileServer10",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"DWHostName": {
+				"type": "string"
+			},
+			"DWUserName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "@{linkedService().DWHostName}",
+			"userId": "@{linkedService().DWUserName}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "minkeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sysusername"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

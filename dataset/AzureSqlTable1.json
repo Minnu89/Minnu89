@@ -1,0 +1,48 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"SQLServerName1": {
+					"value": "@dataset().SQLServerName2",
+					"type": "Expression"
+				},
+				"DBName1": {
+					"value": "@dataset().DBName2",
+					"type": "Expression"
+				},
+				"DBUserName1": {
+					"value": "@dataset().DBUsername2",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"SQLServerName2": {
+				"type": "string"
+			},
+			"DBName2": {
+				"type": "string"
+			},
+			"DBUsername2": {
+				"type": "string"
+			},
+			"TableName2": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName2",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

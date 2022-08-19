@@ -1,0 +1,60 @@
+{
+	"name": "AzureSqlTable2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderDate",
+				"type": "date"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "Category",
+				"type": "varchar"
+			},
+			{
+				"name": "Product",
+				"type": "varchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitPrice",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 10
+			},
+			{
+				"name": "TotalPrice",
+				"type": "decimal",
+				"precision": 20,
+				"scale": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "FoodSalesData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,94 @@
+{
+	"name": "SalesData",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable2",
+						"type": "DatasetReference"
+					},
+					"name": "FoodSalesData"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable4",
+						"type": "DatasetReference"
+					},
+					"name": "FoodSalesDataSink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "foodsalesdataselect1"
+				},
+				{
+					"name": "FoodSalesDataaggregate1"
+				},
+				{
+					"name": "window1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          OrderId as integer,",
+				"          OrderDate as date,",
+				"          Region as string,",
+				"          City as string,",
+				"          Category as string,",
+				"          Product as string,",
+				"          Quantity as integer,",
+				"          UnitPrice as decimal(20,10),",
+				"          TotalPrice as decimal(20,10)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FoodSalesData",
+				"FoodSalesData select(mapColumn(",
+				"          City,",
+				"          Product,",
+				"          Quantity,",
+				"          TotalPrice",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> foodsalesdataselect1",
+				"foodsalesdataselect1 aggregate(groupBy(City,",
+				"          Product),",
+				"     FSDSalesbyCity = toDecimal(sum(TotalPrice),10,2),",
+				"          FSDtotalqty = sum(Quantity)) ~> FoodSalesDataaggregate1",
+				"FoodSalesDataaggregate1 window(over(City),",
+				"     asc(Product, true),",
+				"     FSDSalesRank = rank()) ~> window1",
+				"window1 sink(allowSchemaDrift: false,",
+				"     validateSchema: true,",
+				"     input(",
+				"          City as string,",
+				"          Product as string,",
+				"          FSDSalesbyCity as decimal(10,3),",
+				"          FSDtotalqty as integer,",
+				"          FSDSalesRank as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     preSQLs:['Truncate table FSDRank'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          City,",
+				"          Product,",
+				"          FSDSalesbyCity,",
+				"          FSDtotalqty,",
+				"          FSDSalesRank",
+				"     )) ~> FoodSalesDataSink1"
+			]
+		}
+	}
+}

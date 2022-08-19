@@ -1,0 +1,24 @@
+{
+	"name": "FileServer9",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "F:\\SampleData",
+			"userId": "abhinay lakkireddy",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "minkeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "sysusername"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

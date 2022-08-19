@@ -1,0 +1,11 @@
+{
+	"name": "AzureKeyVault5",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://reddyvault.vault.azure.net/"
+		}
+	}
+}

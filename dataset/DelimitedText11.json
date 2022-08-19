@@ -1,0 +1,54 @@
+{
+	"name": "DelimitedText11",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage9",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"StorageAccName1": {
+					"value": "@dataset().StorageAccName2",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"StorageAccName2": {
+				"type": "string"
+			},
+			"Container2": {
+				"type": "string"
+			},
+			"FilePathname2": {
+				"type": "string"
+			},
+			"FileName3": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().FileName3",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().FilePathname2",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().Container2",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": "|",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,55 @@
+{
+	"name": "AzureSqlTable5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase4",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "OrderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "OrderDate",
+				"type": "date"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			},
+			{
+				"name": "RepName",
+				"type": "varchar"
+			},
+			{
+				"name": "ItemName",
+				"type": "varchar"
+			},
+			{
+				"name": "Units",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "UnitCost",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TotalCost",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 5
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "StationarySalesData"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

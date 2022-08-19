@@ -1,0 +1,11 @@
+{
+	"name": "minkeyvault",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://minnukeyvault1.vault.azure.net/"
+		}
+	}
+}

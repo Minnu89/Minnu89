@@ -1,0 +1,25 @@
+{
+	"name": "SampleDataConfigFileserver",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "This fileserver linked service is used to copy data from Onpreimse to collect Configfile and give to For each activity",
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "F:\\Azure Data Engineering\\SampleCsvData",
+			"userId": "abhinay lakkireddy",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "onpremiseKey"
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

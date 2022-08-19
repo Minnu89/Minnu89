@@ -1,0 +1,24 @@
+{
+	"name": "AzureBlobStorage10",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"StgAccName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=@{linkedService().StgAccName};",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "minkeyvault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "storageacc"
+			}
+		}
+	}
+}

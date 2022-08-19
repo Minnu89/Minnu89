@@ -1,0 +1,42 @@
+{
+	"name": "AzureSynapseAnalyticsTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSynapseAnalytics1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlDWTable",
+		"schema": [
+			{
+				"name": "CalYear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CalMonth",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Make",
+				"type": "nvarchar"
+			},
+			{
+				"name": "TotalQTY",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "RankQTY",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "NorCarSales"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

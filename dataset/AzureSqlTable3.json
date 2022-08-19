@@ -1,0 +1,42 @@
+{
+	"name": "AzureSqlTable3",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase3",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "City",
+				"type": "varchar"
+			},
+			{
+				"name": "Product",
+				"type": "varchar"
+			},
+			{
+				"name": "FSDSalesbyCity",
+				"type": "decimal",
+				"precision": 5,
+				"scale": 3
+			},
+			{
+				"name": "FSDtotalqty",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FSDSalesRank",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "FSDRank"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

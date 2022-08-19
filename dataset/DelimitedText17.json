@@ -1,0 +1,40 @@
+{
+	"name": "DelimitedText17",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer11",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"DWHostName": {
+					"value": "@dataset().DWHostName1",
+					"type": "Expression"
+				},
+				"DWUserName": {
+					"value": "@dataset().DWUsername1",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"DWHostName1": {
+				"type": "string"
+			},
+			"DWUsername1": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,48 @@
+{
+	"name": "AzureSqlTable7",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase6",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Servername": {
+					"value": "@dataset().ServerName1",
+					"type": "Expression"
+				},
+				"DBName": {
+					"value": "@dataset().DBName1",
+					"type": "Expression"
+				},
+				"DBUserName": {
+					"value": "@dataset().DBUserName1",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"ServerName1": {
+				"type": "string"
+			},
+			"DBName1": {
+				"type": "string"
+			},
+			"DBUserName1": {
+				"type": "string"
+			},
+			"TableName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": {
+				"value": "@dataset().TableName",
+				"type": "Expression"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

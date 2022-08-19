@@ -1,0 +1,130 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText19",
+						"type": "DatasetReference"
+					},
+					"name": "NorwayCarSales"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText20",
+						"type": "DatasetReference"
+					},
+					"name": "SuperMarkSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSynapseAnalyticsTable1",
+						"type": "DatasetReference"
+					},
+					"name": "NorCarSalesSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Superselect2"
+				},
+				{
+					"name": "Caraggregate1"
+				},
+				{
+					"name": "window1"
+				},
+				{
+					"name": "sort1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CalYear as integer,",
+				"          CalMonth as integer,",
+				"          Make as string,",
+				"          Quantity as integer,",
+				"          Pct as decimal(10,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> NorwayCarSales",
+				"source(output(",
+				"          InvoiceID as string,",
+				"          Branch as string,",
+				"          City as string,",
+				"          Customertype as string,",
+				"          Gender as string,",
+				"          Productline as string,",
+				"          Unitprice as decimal(10,0),",
+				"          Quantity as integer,",
+				"          Tax as decimal(10,0),",
+				"          Total as decimal(10,0),",
+				"          OrderDate as date,",
+				"          Payment as string,",
+				"          cogs as decimal(10,0),",
+				"          grossmarginpercentage as decimal(10,0),",
+				"          grossincome as decimal(10,0),",
+				"          Rating as decimal(10,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> SuperMarkSales",
+				"SuperMarkSales select(mapColumn(",
+				"          InvoiceID,",
+				"          Branch,",
+				"          City,",
+				"          Customertype,",
+				"          Gender,",
+				"          Productline,",
+				"          Unitprice,",
+				"          Quantity,",
+				"          Tax,",
+				"          Total,",
+				"          OrderDate,",
+				"          Payment,",
+				"          cogs,",
+				"          grossmarginpercentage,",
+				"          grossincome,",
+				"          Rating",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> Superselect2",
+				"NorwayCarSales aggregate(groupBy(CalYear,",
+				"          CalMonth,",
+				"          Make),",
+				"     TotalQTY = toInteger(sum(Quantity))) ~> Caraggregate1",
+				"Caraggregate1 window(over(CalYear),",
+				"     desc(TotalQTY, true),",
+				"     RankQTY = denseRank()) ~> window1",
+				"window1 sort(desc(CalYear, true),",
+				"     desc(CalMonth, true),",
+				"     desc(Make, true)) ~> sort1",
+				"sort1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CalYear as integer,",
+				"          CalMonth as integer,",
+				"          Make as string,",
+				"          TotalQTY as integer,",
+				"          RankQTY as integer",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     staged: true,",
+				"     allowCopyCommand: true,",
+				"     preSQLs:['Truncate table NorCarSales'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> NorCarSalesSink"
+			]
+		}
+	}
+}

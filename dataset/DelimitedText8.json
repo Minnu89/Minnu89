@@ -1,0 +1,72 @@
+{
+	"name": "DelimitedText8",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "FileServer4",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "SalesDataConfig1.txt"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "hostname",
+				"type": "String"
+			},
+			{
+				"name": "username",
+				"type": "String"
+			},
+			{
+				"name": "StoreAccName",
+				"type": "String"
+			},
+			{
+				"name": "containername",
+				"type": "String"
+			},
+			{
+				"name": "foldername",
+				"type": "String"
+			},
+			{
+				"name": "filename",
+				"type": "String"
+			},
+			{
+				"name": "ServerName",
+				"type": "String"
+			},
+			{
+				"name": "DatabaseName",
+				"type": "String"
+			},
+			{
+				"name": "DBUSerName",
+				"type": "String"
+			},
+			{
+				"name": "ExtTable",
+				"type": "String"
+			},
+			{
+				"name": "StoredProcedure",
+				"type": "String"
+			},
+			{
+				"name": "MTableName",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

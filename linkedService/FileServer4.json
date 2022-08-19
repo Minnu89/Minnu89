@@ -1,0 +1,17 @@
+{
+	"name": "FileServer4",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "F:\\Azure Data Engineering\\Azure Practice",
+			"userId": "abhinay lakkireddy",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3NWJlZGZlZi02MWRmLTQ4NzctYmQ0OC0wNTI2ZDliNzFhYmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

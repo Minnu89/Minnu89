@@ -1,0 +1,90 @@
+{
+	"name": "DelimitedText20",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage12",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "SupermarketSales1",
+				"folderPath": "supermarketsale",
+				"container": "salesdata"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "InvoiceID",
+				"type": "String"
+			},
+			{
+				"name": "Branch",
+				"type": "String"
+			},
+			{
+				"name": "City",
+				"type": "String"
+			},
+			{
+				"name": "Customertype",
+				"type": "String"
+			},
+			{
+				"name": "Gender",
+				"type": "String"
+			},
+			{
+				"name": "Productline",
+				"type": "String"
+			},
+			{
+				"name": "Unitprice",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			},
+			{
+				"name": "Tax",
+				"type": "String"
+			},
+			{
+				"name": "Total",
+				"type": "String"
+			},
+			{
+				"name": "OrderDate",
+				"type": "String"
+			},
+			{
+				"name": "Payment",
+				"type": "String"
+			},
+			{
+				"name": "cogs",
+				"type": "String"
+			},
+			{
+				"name": "grossmarginpercentage",
+				"type": "String"
+			},
+			{
+				"name": "grossincome",
+				"type": "String"
+			},
+			{
+				"name": "Rating",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
